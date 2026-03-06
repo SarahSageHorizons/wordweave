@@ -70,7 +70,7 @@ export default function HomePage() {
 
   const status = (() => {
     if (lockLeft > 0) return `You are weaving… ${lockLeft}s`;
-    if (serverLockActive) return "Someone is weaving…";
+    if (serverLockActive) return `${room.active_lock_nickname || "Someone"} is weaving…`;
     return "The loom is open.";
   })();
 
@@ -155,7 +155,7 @@ export default function HomePage() {
       `}
       </style>
       
-      <h1 style={{ fontSize: 44, marginBottom: 8 }}>WordWeave 🕸️</h1>
+      <h1 style={{ fontSize: 44, marginBottom: 8 }}>WordWeave 🧵</h1>
       <p style={{ marginTop: 0, opacity: 0.8 }}>
         A living story written by strangers — one word at a time.
       </p>
@@ -166,7 +166,7 @@ export default function HomePage() {
           value={nick}
           onChange={(e) => setNick(e.target.value.slice(0, 24))}
           onBlur={() => saveNickname(nick)}
-          placeholder="e.g. LanternLady"
+          placeholder="e.g. Pro Crastinator"
           style={{ padding: 10, borderRadius: 10, border: "1px solid #ddd", flex: 1 }}
         />
       </div>
@@ -223,7 +223,7 @@ export default function HomePage() {
       <section style={{ padding: 18, border: "1px solid #eee", borderRadius: 14 }}>
         <div style={{ fontSize: 14, opacity: 0.7, marginBottom: 8 }}>Thread (latest portion)</div>
         <div style={{ fontSize: 20, whiteSpace: "pre-wrap" }}>
-          {storyText || "…the loom waits for the first word."}
+          {storyText || "…the loom waits for the first word. Your story will show here."}
           <span
             style={{
               display: "inline-block",
@@ -280,7 +280,7 @@ export default function HomePage() {
       )}
 
       <footer style={{ marginTop: 18, opacity: 0.7, fontSize: 14 }}>
-        Add your word with care. No cruelty. No hate. Let it be strange — not harmful.
+        Add your word with care. No cruelty. No hate. Let it be expressive, even strange — please not harmful.
         <div style={{ marginTop: 12 }}>
           <a href="/archives" style={{ textDecoration: "none" }}>
             View Archives →
