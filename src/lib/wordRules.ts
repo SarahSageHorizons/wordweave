@@ -53,7 +53,7 @@ export function validateWord(input: string): { ok: true; word: string } | { ok: 
 
   const lowered = cleaned.toLowerCase();
 
-  if (BANNED_WORDS.includes(lowered)) {
+  if (BANNED_WORDS.some(b => lowered.includes(b))) {
     return { ok: false, error: "That word cannot be used here, naughty-naughty." };
   }
 
