@@ -28,6 +28,7 @@ export async function POST(req: Request) {
       .single();
 
     if (roomErr || !room) {
+      console.error("Room fetch error:", roomErr);
       return NextResponse.json({ ok: false, error: "Room not found" }, { status: 500 });
     }
 
@@ -74,6 +75,7 @@ export async function POST(req: Request) {
     });
 
     if (insErr) {
+      console.error("Insert error:", insErr);
       return NextResponse.json({ ok: false, error: "Failed to weave word." }, { status: 500 });
     }
 
@@ -88,6 +90,7 @@ export async function POST(req: Request) {
       .eq("id", ROOM_ID);
 
     if (updErr) {
+      console.error("Room update error:", updErr);
       return NextResponse.json({ ok: false, error: "Failed to update room." }, { status: 500 });
     }
 
@@ -98,7 +101,8 @@ export async function POST(req: Request) {
     });
 
     return NextResponse.json({ ok: true, turn: nextTurn, word: cleaned });
-  } catch {
+  } catch (err) {
+    console.error("Submit route unexpected error:", err);
     return NextResponse.json({ ok: false, error: "Bad request" }, { status: 400 });
   }
 }

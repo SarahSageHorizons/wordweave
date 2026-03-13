@@ -33,12 +33,12 @@ export function validateWord(input: string): { ok: true; word: string } | { ok: 
 
   // Reject anything with internal spaces after cleaning
   if (/\s/.test(cleaned)) {
-    return { ok: false, error: "Slow down... One word at a time, please." };
+    return { ok: false, error: "Slowly slowly... One word at a time, please." };
   }
 
   // Reject obvious URLs / domains
   if (/https?:\/\//i.test(cleaned) || /www\./i.test(cleaned) || /\.[a-z]{2,}$/i.test(cleaned)) {
-    return { ok: false, error: "No-no, links are not allowed here. Go advertise elsewhere." };
+    return { ok: false, error: "No-no-no, links are not allowed here. Go advertise elsewhere ;)." };
   }
 
   // Length guard
@@ -48,7 +48,7 @@ export function validateWord(input: string): { ok: true; word: string } | { ok: 
 
   // Allow letters, numbers, apostrophes, and hyphens inside a word
   if (!/^[a-zA-Z0-9'-]+$/u.test(cleaned)) {
-    return { ok: false, error: "Please use a simple single word." };
+    return { ok: false, error: "KISS. Please use a simple single word." };
   }
 
   const lowered = cleaned.toLowerCase();
